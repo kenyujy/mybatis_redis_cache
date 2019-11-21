@@ -1,0 +1,79 @@
+<!doctype html>
+<html class="no-js h-100" lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>EMP</title>
+    <meta name="description" content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="css/shards-dashboards.1.1.0.min.css">
+    <link rel="stylesheet" href="css/extras.1.1.0.min.css">
+  </head>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Main Sidebar -->
+        <div th:replace="~{dashboard::main_sidebar}"></div>
+        <!-- End Main Sidebar -->
+        <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+          <div class="main-navbar sticky-top bg-white">
+            <!-- Main Navbar -->
+            <div th:replace="~{dashboard::Navibar}"></div>
+          	<!-- / .main-navbar -->
+          <div class="main-content-container container-fluid px-4">
+            <!-- Page Header -->
+            <div class="page-header row no-gutters py-4">
+              <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+                <span class="text-uppercase page-subtitle">Overview</span>
+                <h6 class="page-title">EMP List</h6>
+              </div>
+            </div>
+            <!-- End Page Header -->
+            <!-- Default Light Table -->
+            <div class="row">
+              <div class="col">
+                <div class="card card-small mb-4">
+                  <div class="card-header border-bottom">
+                    <!-- to add page 引入bootstrap后样式随意试用 -->
+                    <FONT COLOR="WHITE"><a class="btn btn-success" th:href="@{addemp}">ADD EMPLOYEE</a></FONT>
+                  </div>
+                  <div class="card-body p-0 pb-3 text-center">
+                    <table class="table mb-0">
+                      <thead class="bg-light">
+                        <tr>
+                          <th scope="col" class="border-0">#</th>
+                          <th scope="col" class="border-0">Name</th>
+                          <th scope="col" class="border-0">Salary</th>
+                          <th scope="col" class="border-0">Dept</th>
+                          <th scope="col" class="border-0">Email</th>
+                          <th scope="col" class="border-0">Phone</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      	<!-- model/MAP 的String name！！非常重要 ,th:text在标签里面-->
+                        <tr th:each="emp:${Emps}" >
+                          <td th:utext="${emp.ID}"></td>
+                          <td th:text="${emp.Name}"></td>
+                          <td th:text="${emp.Salary}"></td>
+                          <td th:text="${emp.Dept}"></td>
+                          <td th:text="${emp.Email}"></td>
+                          <td th:text="${emp.Phone}"></td>
+                          <!-- UPDATE BUTTON here -->
+                          <td ><FONT COLOR="WHITE"><a class="btn btn-primary" th:href="@{editemp}+'/'+${emp.ID}">UPDATE</a></FONT></td>
+                          <td><FONT COLOR="WHITE"><a class="btn btn-danger" th:href="@{deleteemp}+'/'+${emp.ID}">DELETE</a></FONT></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Default Light Table -->
+          </div>
+          <!-- footer -->
+          <div th:replace="~{dashboard::footer}"></div>
+          <!-- end of footer -->
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

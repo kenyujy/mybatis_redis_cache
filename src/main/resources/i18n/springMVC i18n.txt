@@ -1,0 +1,4 @@
+spring MVC 国际化
+
+编写 ResourceBundleMessageSource 管理国际化文件
+页面用JSP fmt:message 取出国际化内容

@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js h-100" lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>EMP</title>
+    <meta name="description" content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="css/shards-dashboards.1.1.0.min.css">
+    <link rel="stylesheet" href="css/extras.1.1.0.min.css">
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </head>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Main Sidebar -->
+        <div th:replace="~{dashboard::main_sidebar}"></div>
+        <!-- End Main Sidebar -->
+        <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+          <div class="main-navbar sticky-top bg-white">
+            <!-- Main Navbar -->
+            <div th:replace="~{dashboard::Navibar}"></div>
+          	<!-- / .main-navbar -->
+          <div class="main-content-container container-fluid px-4">
+            <!-- Page Header -->
+            <div class="page-header row no-gutters py-4">
+              <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+                <span class="text-uppercase page-subtitle">Overview</span>
+                <h6 class="page-title">Add Employee</h6>
+              </div>
+            </div>
+            <!-- End Page Header -->
+            <!-- add form action th:object binds object to form data-->
+            <form th:action="@{/addemp}" method="post">
+            	  <div class="form-group">
+				    <label>Name</label>
+				    <input type="text" class="form-control" name="Name" placeholder="John Doe">
+				  </div>
+				  <div class="form-group">
+				    <label>Salary</label>
+				    <input type="number" class="form-control" name="Salary" placeholder="10000">
+				  </div>
+				  <!--从数据库提取Dept 遍历  -->
+				  <div class="form-group">
+				    <label>Department select</label>
+				    <select class="form-control" name="Dept">
+				      <option th:value="${dept}" th:text="${dept}" th:each="dept:${depts}">1</option>
+				    </select>
+				  </div>
+				  <div class="form-group">
+				    <label>Email address</label>
+				    <input type="text" class="form-control" name="Email" placeholder="name@example.com">
+
+				  </div>
+                  <th:block th:if="${email_error}">
+                      <h6 class="alert-warning" th:utext="${email_error}"></h6>
+                  </th:block>
+				  <div class="form-group">
+				    <label>Phone</label>
+				    <input type="text" class="form-control" name="Phone" placeholder="+861888888">
+				  </div>			  
+				    <br/>
+				  <font color="WHITE"><button type="submit" class="btn btn-success">SUBMIT</button></font>
+			</form>
+            <!-- add form -->
+          </div>
+          </div>
+          <!-- footer -->
+          <div th:replace="~{dashboard::footer}"></div>
+          <!-- end of footer -->
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

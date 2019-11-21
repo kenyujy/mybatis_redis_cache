@@ -1,0 +1,27 @@
+package MybatisXML;
+
+import MybatisXML.Entitymodel.Employee;
+import MybatisXML.MapperConfig.EmployeeMapper;
+import MybatisXML.Service.EmployeeService;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Collection;
+import java.util.List;
+
+@SpringBootTest
+public class XmlApplicationTests {
+
+    public EmployeeService employeeService = new EmployeeService();
+
+    @Test
+    public void contextLoads() {
+
+        System.out.println(employeeService);
+
+        Collection<Employee> el= employeeService.getAllEmp();
+        //System.out.println(el);
+    }
+
+}
