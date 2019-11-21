@@ -13,6 +13,6 @@ public class FormCheckService {
     }
 
     public static boolean passwordChecker(String password){
-        return (Pattern.matches("[a-z]{1,20}[A-Z]{1,20}[0-9]{1,20}", password) && password.length()>5);
+        return (Pattern.matches("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})", password) && password.length()>5);
     }
 }
