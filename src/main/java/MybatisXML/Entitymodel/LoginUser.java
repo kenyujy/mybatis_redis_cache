@@ -1,98 +1,94 @@
 package MybatisXML.Entitymodel;
 
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 //LoginUser 即数据库spring_test 里面的 spring_user
 public class LoginUser {
 	
-	private int userid;
+	private int user_id;
 	
 	@NotEmpty
-	private String username;
+	private String user_name;
 	
 	@NotEmpty
 	private String password;
 	
-	@NotEmpty
-	private int AccountStatus;
-	private int Level1_auth;
-	private int Level2_auth;
-	private int Level3_auth;
-	
-	public LoginUser(int userid, String username, String password, int AccountStatus, int Level1_auth, int Level2_auth, int Level3_auth) {
-		this.userid=userid;
-		this.username=username;
-		this.password=password;
-		this.AccountStatus=AccountStatus;
-		this.Level1_auth= Level1_auth;
-		this.Level2_auth= Level2_auth;
-		this.Level3_auth= Level3_auth;
-	}
-	
-	public LoginUser (String username, String password) {
-		this.username=username;
-		this.password=password;
-	}
-	
-	public int getUserID() {
-		return userid;
-	}
-	
-	public void setUserID(int UserID) {
-		this.userid=UserID;
+	//@NotEmpty
+	private int account_status;
+
+	private int userRoleId;
+	private Date lastLogin;
+
+	public LoginUser(){ }
+
+	public LoginUser(int user_id, @NotEmpty String user_name, @NotEmpty String password, int account_status, int userRoleId, Date lastLogin) {
+		this.user_id = user_id;
+		this.user_name = user_name;
+		this.password = password;
+		this.account_status = account_status;
+		this.userRoleId = userRoleId;
+		this.lastLogin = lastLogin;
 	}
 
-	public String getUserName() {
-		return username;
+	public int getUser_id() {
+		return user_id;
 	}
-	
-	public void setName(String UserName) {
-		this.username=UserName;
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
-	
-	public String getPasswd() {
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public String getPassword() {
 		return password;
 	}
-	
-	public void setPasswd(String Passwd) {
-		this.password=Passwd;
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	
-	public int getAccountStatus() {
-		return AccountStatus;
+
+	public int getAccount_status() {
+		return account_status;
 	}
-	
-	public void setAccountStatus(int AccountStatus) {
-		this.AccountStatus=AccountStatus;
+
+	public void setAccount_status(int account_status) {
+		this.account_status = account_status;
 	}
-	
-	public int getLevel1_auth() {
-		return Level1_auth;
+
+	public int getUserRoleId() {
+		return userRoleId;
 	}
-	
-	public void setLevel1_auth(int Level1_auth) {
-		this.Level1_auth=Level1_auth;
+
+	public void setUserRoleId(int userRoleId) {
+		this.userRoleId = userRoleId;
 	}
-	
-	public int getLevel2_auth() {
-		return Level2_auth;
+
+	public Date getLastLogin() {
+		return lastLogin;
 	}
-	
-	public void setLevel2_auth(int Level2_auth) {
-		this.Level2_auth=Level2_auth;
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
 	}
-	
-	public int getLevel3_auth() {
-		return Level3_auth;
-	}
-	
-	public void setLevel3_auth(int Level3_auth) {
-		this.Level3_auth=Level3_auth;
-	}
-	
+
 	@Override
 	public String toString() {
-		return "UserID: " + userid +",UserName: " + username + ",Passwd: " + password + ",AccountStatus: " + AccountStatus
-				+",Level1_auth: "+Level1_auth+",Level2_auth: "+Level2_auth+",Level3_auth: "+Level3_auth;
+		return "LoginUser{" +
+				"user_id=" + user_id +
+				", user_name='" + user_name + '\'' +
+				", password='" + password + '\'' +
+				", account_status=" + account_status +
+				", userRoleId=" + userRoleId +
+				", lastLogin=" + lastLogin +
+				'}';
 	}
 }

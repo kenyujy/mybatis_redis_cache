@@ -1,10 +1,18 @@
 package MybatisXML.Controller;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import MybatisXML.Entitymodel.Employee;
+import MybatisXML.Entitymodel.SystemMsg;
+import MybatisXML.MapperConfig.SystemMsgMapper;
 import MybatisXML.Service.EmployeeService;
 import MybatisXML.Service.FormCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +27,8 @@ public class WebCrudController {
 	@Autowired
     private EmployeeService employeeService;
 	//一行@Autowired配一行!
+	@Autowired
+	SystemMsgMapper systemMsgMapper;
 	
 	@ResponseBody
 	@RequestMapping(value={"/emp/{id}"}, method=RequestMethod.GET)
@@ -87,6 +97,7 @@ public class WebCrudController {
 	public ModelAndView updateEmpCommit(@ModelAttribute Employee ex, ModelMap model) {
 		//form data validity check
 
+		//System.out.flush();
 		if ( FormCheckService.emailChecker(ex.getEmail())){
 			employeeService.updateEmp(ex);
 			//redirect 重定向到一个地址, forward 转发到一个地址
@@ -106,6 +117,16 @@ public class WebCrudController {
 	public Collection<Employee> ListAllEmpl() {
 		Collection<Employee> EmpList=employeeService.getAllEmp();
 		return EmpList;
+	}
+
+	@ResponseBody
+	@RequestMapping(value={"/getSysMsg"}, method=RequestMethod.GET)
+	public List<SystemMsg> getSysMsg(HttpServletRequest request) {
+
+		Date lastLogin= (Date) request.getSession().getAttribute("lastLogin"); //取出session中的上次登录时间
+		List<SystemMsg> systemMsgs= systemMsgMapper.getSysMsg(lastLogin);  //取出上次登录后发布的系统消息
+		request.getSession().setAttribute("lastLogin", new Date()); //更新session中的登陆时间
+		return systemMsgs;
 	}
 
 

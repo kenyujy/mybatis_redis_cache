@@ -12,9 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 
-@Configuration
 @Mapper
-@Component
 public interface EmployeeMapper
 	{
 		//注意把特殊字符转义成字符串，例如 '${Email}'

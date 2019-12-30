@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import MybatisXML.Entitymodel.Employee;
 import MybatisXML.MapperConfig.EmployeeMapper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -13,6 +14,7 @@ import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+@MapperScan("MybatisXML.MapperConfig")
 @Component
 @CacheConfig(cacheNames="emps") //缓存公共配置
 @Service

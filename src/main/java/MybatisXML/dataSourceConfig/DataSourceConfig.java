@@ -35,7 +35,11 @@ public class DataSourceConfig {
         dataSourceBuilder.password(databasePassword);
         return dataSourceBuilder.build();
 	}
-	
+
+	public static void main(String[] args) {
+		DataSourceConfig d=new DataSourceConfig();
+		System.out.println(d.databaseUrl);
+	}
 	/*
 	@Bean
     public SqlSessionFactory getSqlSession() throws IOException {

@@ -7,9 +7,18 @@
     <meta name="description" content="A high-quality &amp; free Bootstrap admin dashboard template pack that comes with lots of templates and components.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="css/shards-dashboards.1.1.0.min.css" th:href="@{css/shards-dashboards.1.1.0.min.css}">
-    <link rel="stylesheet" href="styles/extras.1.1.0.min.css" th:href="@{/css/extras.1.1.0.min.css}">
+    <script type="text/javascript" src="js\jquery-3.4.1.js" th:src="@{js/jquery-3.4.1.min.js}"></script>
   </head>
   <body class="h-100">
+    <script type="text/javascript">
+        window.onload= function getSysMsg(){
+          $.get("/getSysMsg",function(result){
+            $.each(result, function(i, item){
+              alert(item.msgContent);
+            })
+          })
+        }
+    </script>
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar add fragment-->
